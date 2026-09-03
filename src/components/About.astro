@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import cookingImage from "@/assets/images/campfire-cooking.jpg";
+import sunsetImage from "@/assets/images/sunset-friends.jpg";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="about section" id="about">
+  <div class="about__inner site-container">
+    <div class="about__copy">
+      <SectionHeading eyebrow="ABOUT YAMABITO" title={["山で出会う、", "いつもと違う一日。"]} />
+      <div class="about__body" data-reveal>
+        <p class="about__lead">歩く。見つける。つくる。食べる。</p>
+        <p class="about__text">
+          福岡県筑紫野市平等寺の里山を舞台に、親子や子どもたちが自然とふれあう時間をつくる「里山学校やまびと」。森や野草、火を使った料理、山での暮らし。ここでしか出会えない体験を、五つのメニューからお選びいただけます。
+        </p>
+      </div>
+    </div>
+    <div class="about__visual" data-reveal>
+      <div class="about__image-wrap about__image-wrap--main">
+        <Image class="about__image" src={cookingImage} alt="炭火で料理を楽しむ様子" widths={[480, 720, 900]} sizes="(max-width: 767px) 82vw, 42vw" />
+      </div>
+      <div class="about__image-wrap about__image-wrap--sub">
+        <Image class="about__image" src={sunsetImage} alt="夕日の下で手を広げる人たち" widths={[300, 480]} sizes="(max-width: 767px) 42vw, 18vw" />
+      </div>
+      <p class="about__visual-word" aria-hidden="true">YAMABITO</p>
+    </div>
+  </div>
+</section>

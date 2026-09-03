@@ -1,0 +1,84 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import About from "@/components/About.astro";
+import Programs from "@/components/Programs.astro";
+import Scenes from "@/components/Scenes.astro";
+import Information from "@/components/Information.astro";
+import Closing from "@/components/Closing.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<BaseLayout>
+  <div class="site-page">
+    <Header />
+    <main class="site-main">
+      <Hero />
+      <About />
+      <Programs />
+      <Scenes />
+      <Information />
+      <Closing />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const menuButton = document.querySelector<HTMLElement>("[data-menu-button]");
+  const mobileMenu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const header = document.querySelector<HTMLElement>("[data-header]");
+
+  const closeMenu = () => {
+    if (!menuButton || !mobileMenu) return;
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "メニューを開く");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("menu-is-open");
+  };
+
+  menuButton?.addEventListener("click", () => {
+    const willOpen = menuButton.getAttribute("aria-expanded") !== "true";
+    menuButton.setAttribute("aria-expanded", String(willOpen));
+    menuButton.setAttribute("aria-label", willOpen ? "メニューを閉じる" : "メニューを開く");
+    mobileMenu?.setAttribute("aria-hidden", String(!willOpen));
+    document.documentElement.classList.toggle("menu-is-open", willOpen);
+  });
+
+  mobileMenu?.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => link.addEventListener("click", closeMenu));
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  const onScroll = () => header?.classList.toggle("site-header--scrolled", window.scrollY > 24);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  if (!reduceMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    const lenis = new Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 0.9 });
+
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    gsap.from("[data-hero-media]", { scale: 1.08, duration: 1.6, ease: "power3.out" });
+    gsap.from("[data-hero-item]", { y: 42, opacity: 0, duration: 1, stagger: 0.14, delay: 0.25, ease: "power3.out" });
+
+    gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
+      gsap.from(element, {
+        y: 48,
+        opacity: 0,
+        duration: 0.95,
+        ease: "power3.out",
+        scrollTrigger: { trigger: element, start: "top 88%", once: true },
+      });
+    });
+  }
+</script>

@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import parentChildImage from "@/assets/images/parent-child-outdoor.jpg";
+import outdoorCookingImage from "@/assets/images/outdoor-cooking.jpg";
+import campImage from "@/assets/images/forest-camp.jpg";
+import streamImage from "@/assets/images/stream-learning.png";
+import homeStayImage from "@/assets/images/school-house-portrait.jpg";
+import { programs } from "@/data/site";
+import SectionHeading from "./SectionHeading.astro";
+
+const images = {
+  "parent-child-outdoor": parentChildImage,
+  "outdoor-cooking": outdoorCookingImage,
+  "forest-camp": campImage,
+  "stream-learning": streamImage,
+  "school-house-portrait": homeStayImage,
+};
+---
+
+<section class="programs section" id="programs">
+  <div class="programs__inner site-container">
+    <div class="programs__head">
+      <SectionHeading eyebrow="PROGRAMS" title={["自然とふれあう、", "五つの体験。"]} tone="light" />
+      <p class="programs__intro" data-reveal>親子で。子どもたちで。山を歩き、料理をつくり、里山で暮らす。それぞれの入り口から、自然の時間へ。</p>
+    </div>
+    <div class="programs__list">
+      {programs.map((program) => (
+        <article class="program-card" data-reveal>
+          <div class="program-card__media">
+            <Image class="program-card__image" src={images[program.image]} alt={`${program.title}の様子`} widths={[420, 640, 840]} sizes="(max-width: 767px) 92vw, 42vw" />
+          </div>
+          <div class="program-card__content">
+            <span class="program-card__number">{program.number}</span>
+            <h3 class="program-card__title">{program.title}</h3>
+            <p class="program-card__description">{program.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

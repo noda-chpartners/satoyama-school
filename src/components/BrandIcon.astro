@@ -1,0 +1,15 @@
+---
+import { siInstagram, siLine } from "simple-icons";
+
+interface Props {
+  name: "instagram" | "line";
+  size?: number;
+}
+
+const { name, size = 22 } = Astro.props;
+const icon = name === "instagram" ? siInstagram : siLine;
+---
+
+<svg class="brand-icon" width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+  <path d={icon.path}></path>
+</svg>

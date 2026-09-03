@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import concertImage from "@/assets/images/satoyama-concert.jpg";
+import adventureImage from "@/assets/images/stream-adventure.png";
+import videoImage from "@/assets/images/mountain-video.png";
+import clubImage from "@/assets/images/yamabito-club-logo.jpg";
+import SectionHeading from "./SectionHeading.astro";
+
+const scenes = [
+  {
+    src: adventureImage,
+    alt: "沢の中を進む子どもたち",
+    caption: "森と沢へ",
+    variant: "portrait",
+    widths: [360, 540, 720],
+    sizes: "72vw",
+  },
+  {
+    src: concertImage,
+    alt: "里山の屋外で音楽を楽しむ人たち",
+    caption: "里山に集う",
+    variant: "landscape",
+    widths: [480, 720, 960],
+    sizes: "82vw",
+  },
+  {
+    src: videoImage,
+    alt: "森の中で声を上げる登山の参加者",
+    caption: "山を楽しむ",
+    variant: "landscape",
+    widths: [480, 720, 960],
+    sizes: "82vw",
+  },
+  {
+    src: clubImage,
+    alt: "山人クラブ LOVE & PEACE in NATURE",
+    caption: "LOVE & PEACE in NATURE",
+    variant: "square",
+    widths: [360, 540],
+    sizes: "66vw",
+  },
+] as const;
+---
+
+<section class="scenes section" id="scenes">
+  <div class="scenes__head site-container">
+    <SectionHeading eyebrow="SCENES FROM THE SAToyama" title={["里山で流れる、", "それぞれの時間。"]} />
+    <p class="scenes__caption" data-reveal>森へ入り、火を囲み、ときには音楽に耳を澄ます。素材写真から、やまびとの風景をご紹介します。</p>
+  </div>
+  <div class="scenes__rail" data-scenes-rail>
+    <div class="scenes__track">
+      {[0, 1].map((copy) => (
+        <div class="scenes__group" aria-hidden={copy === 1 ? "true" : undefined}>
+          {scenes.map((scene) => (
+            <figure class={`scene-card scene-card--${scene.variant}`}>
+              <Image class="scene-card__image" src={scene.src} alt={copy === 1 ? "" : scene.alt} widths={[...scene.widths]} sizes={scene.sizes} />
+              <figcaption class="scene-card__caption">{scene.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

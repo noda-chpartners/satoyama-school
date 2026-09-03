@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "@/assets/images/forest-hike.jpg";
+import mossImage from "@/assets/images/moss-smile.jpg";
+import { site } from "@/data/site";
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__media" data-hero-media>
+    <Image class="hero__image" src={heroImage} alt="森の中を歩く子どもたち" widths={[640, 960, 1280, 1600]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="hero__shade"></div>
+  </div>
+  <div class="hero__content">
+    <p class="hero__kicker" data-hero-item>FUKUOKA / CHIKUSHINO</p>
+    <h1 class="hero__title" id="hero-title" data-hero-item>
+      <span class="hero__title-line">里山で、遊ぶ。</span>
+      <span class="hero__title-line">自然から、学ぶ。</span>
+    </h1>
+    <p class="hero__name" data-hero-item>{site.name}</p>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <span class="hero__scroll-text">SCROLL</span>
+    <span class="hero__scroll-line"></span>
+  </div>
+  <div class="hero__moss" data-hero-item>
+    <Image class="hero__moss-image" src={mossImage} alt="苔と落ち葉で描かれた笑顔" width={220} quality={82} />
+    <p class="hero__moss-copy">山の中には、<br />小さな発見がたくさん。</p>
+  </div>
+</section>

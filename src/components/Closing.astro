@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import closingImage from "@/assets/images/outdoor-cooking.jpg";
+import { site } from "@/data/site";
+---
+
+<section class="closing" aria-label="お問い合わせ">
+  <div class="closing__media">
+    <Image class="closing__image" src={closingImage} alt="里山で野外料理をする様子" widths={[640, 960, 1280, 1600]} sizes="100vw" />
+    <div class="closing__shade"></div>
+  </div>
+  <div class="closing__content site-container" data-reveal>
+    <p class="closing__kicker">COME TO THE SAToyama</p>
+    <h2 class="closing__title">
+      <span class="closing__title-line">次の休日は、</span>
+      <span class="closing__title-line">里山へ。</span>
+    </h2>
+    <a class="closing__phone" href={site.phone.href}>
+      <span class="closing__phone-label">お電話でのお問い合わせ</span>
+      <span class="closing__phone-number">{site.phone.display}</span>
+    </a>
+  </div>
+</section>

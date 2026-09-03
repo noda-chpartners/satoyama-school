@@ -1,0 +1,17 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string | string[];
+  tone?: "dark" | "light";
+}
+
+const { eyebrow, title, tone = "dark" } = Astro.props;
+const lines = Array.isArray(title) ? title : [title];
+---
+
+<header class:list={["section-heading", `section-heading--${tone}`]} data-reveal>
+  <p class="section-heading__eyebrow">{eyebrow}</p>
+  <h2 class="section-heading__title">
+    {lines.map((line) => <span class="section-heading__title-line">{line}</span>)}
+  </h2>
+</header>

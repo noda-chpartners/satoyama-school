@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import schoolImage from "@/assets/images/school-house.jpg";
+import BrandIcon from "./BrandIcon.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { site } from "@/data/site";
+
+const details = [
+  { label: "住所", value: site.address },
+  { label: "アクセス", value: site.access },
+  { label: "営業時間", value: site.hours },
+  { label: "定休日", value: site.closed },
+  { label: "席数", value: site.seats },
+];
+---
+
+<section class="information section" id="information">
+  <div class="information__inner site-container">
+    <div class="information__media" data-reveal>
+      <Image class="information__image" src={schoolImage} alt="里山学校やまびとの建物と山人クラブの旗" widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 50vw" />
+      <p class="information__image-label">HIRATOJI, CHIKUSHINO</p>
+    </div>
+    <div class="information__content">
+      <SectionHeading eyebrow="INFORMATION" title={["里山学校", "やまびと"]} />
+      <dl class="information__list" data-reveal>
+        {details.map((detail) => (
+          <div class="information__row">
+            <dt class="information__term">{detail.label}</dt>
+            <dd class="information__detail">{detail.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="information__contact" data-reveal>
+        <p class="information__contact-label">お電話でのお問い合わせ</p>
+        <a class="information__phone" href={site.phone.href}>{site.phone.display}</a>
+      </div>
+      <div class="information__socials" data-reveal>
+        {site.socials.map((social) => (
+          <a class="social-link" href={social.href} target="_blank" rel="noopener noreferrer">
+            <BrandIcon name={social.icon} size={24} />
+            <span class="social-link__copy">
+              <span class="social-link__name">{social.name}</span>
+              <span class="social-link__handle">{social.handle}</span>
+            </span>
+            <span class="social-link__arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+      <p class="information__note">金曜日の営業時間や各体験の詳細は、お電話・Instagram・LINE公式よりお問い合わせください。</p>
+    </div>
+  </div>
+</section>
