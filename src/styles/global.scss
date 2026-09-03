@@ -407,7 +407,9 @@ html {
 
 .hero {
   position: relative;
-  min-height: max(720px, 100svh);
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
   background: var(--color-forest-deep);
   color: var(--color-white);
@@ -435,10 +437,14 @@ html {
 .hero__content {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: var(--header-height);
+  bottom: 0;
   left: max(40px, calc((100vw - var(--container)) / 2));
-  max-width: min(760px, 68vw);
-  transform: translateY(-43%);
+  display: flex;
+  max-width: min(900px, 76vw);
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: clamp(72px, 10vh, 120px);
 }
 
 .hero__kicker {
@@ -461,7 +467,7 @@ html {
 .hero__title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(4.1rem, 7.4vw, 7rem);
+  font-size: clamp(2.4rem, min(7.4vw, 11svh), 7rem);
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1.23;
@@ -540,6 +546,26 @@ html {
   font-size: clamp(0.78rem, 1.1vw, 0.95rem);
   font-weight: 600;
   line-height: 1.8;
+}
+
+@media (max-height: 760px) {
+  .hero__title {
+    font-size: clamp(2.2rem, min(6.4vw, 9svh), 5.2rem);
+  }
+
+  .hero__moss {
+    right: 24px;
+    bottom: 20px;
+    width: min(230px, 22vw);
+    grid-template-columns: 72px 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .hero__moss-image {
+    width: 72px;
+    height: 72px;
+  }
 }
 
 .about {
@@ -1313,7 +1339,7 @@ html {
   }
 
   .hero__title {
-    font-size: clamp(3.5rem, 9.2vw, 5.2rem);
+    font-size: clamp(2.2rem, min(9.2vw, 10svh), 5.2rem);
   }
 
   .hero__moss {
@@ -1453,10 +1479,6 @@ html {
     gap: 12px;
   }
 
-  .hero {
-    min-height: max(650px, 100svh);
-  }
-
   .hero__image {
     object-position: 51% 52%;
   }
@@ -1468,12 +1490,11 @@ html {
   }
 
   .hero__content {
-    top: auto;
     right: 20px;
-    bottom: 108px;
     left: 20px;
     max-width: none;
-    transform: none;
+    justify-content: flex-end;
+    padding-bottom: max(88px, calc(env(safe-area-inset-bottom) + 72px));
   }
 
   .hero__kicker {
@@ -1482,7 +1503,7 @@ html {
   }
 
   .hero__title {
-    font-size: clamp(2rem, 9.6vw, 3.7rem);
+    font-size: clamp(1.85rem, min(9.6vw, 9svh), 3.7rem);
     line-height: 1.28;
   }
 
@@ -1495,6 +1516,7 @@ html {
   .hero__scroll {
     left: auto;
     right: 18px;
+    bottom: env(safe-area-inset-bottom);
   }
 
   .hero__scroll-text {
@@ -1696,6 +1718,10 @@ html {
     left: 18px;
   }
 
+  .hero__title-line {
+    white-space: normal;
+  }
+
   .section-heading__title {
     font-size: 1.72rem;
   }
@@ -1756,8 +1782,24 @@ html {
     flex-direction: column;
   }
 
-  .hero {
-    min-height: 520px;
+  .hero__content {
+    padding-bottom: 48px;
+  }
+
+  .hero__title {
+    font-size: clamp(1.6rem, 8svh, 2.6rem);
+  }
+
+  .hero__kicker {
+    margin-bottom: 10px;
+  }
+
+  .hero__name {
+    margin-top: 12px;
+  }
+
+  .hero__scroll-line {
+    height: 36px;
   }
 }
 
