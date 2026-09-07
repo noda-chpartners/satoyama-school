@@ -70,6 +70,6 @@ export const programs = [
     number: "05",
     title: "里山リトリート",
     description: "里山の風景や暮らしにふれる、滞在型のプログラムです。",
-    image: "school-house-portrait",
+    image: "image03",
   },
 ] as const;
