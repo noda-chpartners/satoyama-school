@@ -15,6 +15,12 @@ export const site = {
   seats: "12席",
   socials: [
     {
+      name: "公式サイト",
+      handle: "yamabito.club",
+      href: "https://yamabito.club/",
+      icon: "website",
+    },
+    {
       name: "Instagram",
       handle: "@satoyamagakko",
       href: "https://www.instagram.com/satoyamagakko?igsh=dWt5ZmNpeDI1N2Fy&utm_source=qr",
@@ -62,7 +68,7 @@ export const programs = [
   },
   {
     number: "05",
-    title: "里山ホームステイ",
+    title: "里山リトリート",
     description: "里山の風景や暮らしにふれる、滞在型のプログラムです。",
     image: "school-house-portrait",
   },
